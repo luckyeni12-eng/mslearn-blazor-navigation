@@ -4,7 +4,7 @@ public class Order
 {
     public int OrderId { get; set; }
 
-    public string UserId { get; set; }
+    public string UserId { get; set; } = string.Empty;
 
     public DateTime CreatedTime { get; set; }
 
@@ -14,5 +14,8 @@ public class Order
 
     public decimal GetTotalPrice() => Pizzas.Sum(p => p.GetTotalPrice());
 
-    public string GetFormattedTotalPrice() => GetTotalPrice().ToString("0.00");
+    public string GetFormattedTotalPrice() =>
+        GetTotalPrice().ToString(
+            "C2",
+            new System.Globalization.CultureInfo("en-NG"));
 }

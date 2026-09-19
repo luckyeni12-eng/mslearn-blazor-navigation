@@ -13,13 +13,13 @@ public class Pizza
 
     public int OrderId { get; set; }
 
-    public PizzaSpecial Special { get; set; }
+    public PizzaSpecial Special { get; set; } = new PizzaSpecial();
 
     public int SpecialId { get; set; }
 
-    public int Size { get; set; }
+    public int Size { get; set; } = DefaultSize;
 
-    public List<PizzaTopping> Toppings { get; set; }
+    public List<PizzaTopping> Toppings { get; set; } = new List<PizzaTopping>();
 
     public decimal GetBasePrice()
     {
@@ -33,6 +33,8 @@ public class Pizza
 
     public string GetFormattedTotalPrice()
     {
-        return GetTotalPrice().ToString("0.00");
+        return GetTotalPrice().ToString(
+            "C2",
+            new System.Globalization.CultureInfo("en-NG"));
     }
 }
